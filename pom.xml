@@ -16,6 +16,7 @@
         <assertj-core.version>3.16.1</assertj-core.version>
         <hamcrest-all.version>1.3</hamcrest-all.version>
         <mockito-all.version>1.9.5</mockito-all.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -54,6 +55,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
