@@ -32,7 +32,7 @@ public class Converter {
 
             String fieldName = field.getName();
             String fieldType = field.getType().getTypeName()
-                    .substring(field.getType().getTypeName().lastIndexOf(".") + 1);
+                    .substring(field.getType().getTypeName().lastIndexOf('.') + 1);
             Method getMethod = null;
             try {
                 getMethod = oClass.getMethod(String.format("%s%s%s", PREFIX_GET_METHOD,
@@ -50,7 +50,7 @@ public class Converter {
                                    .substring(annotationList.get(0).lastIndexOf('=') + 1,
                                            annotationList.get(0).lastIndexOf(')'));
                     }
-                    jsonString.append("\"").append(fieldName).append("\"").append(":");
+                    jsonString.append('\"').append(fieldName).append('\"').append(':');
 
                     String dateFormat = "";
                     if (annotationList.stream().filter(a -> a.contains(ANNOTATION_CUSTOM_DATE_FORMAT)).count() == 1L) {
@@ -62,7 +62,7 @@ public class Converter {
 
                     switch (fieldType) {
                         case "String":
-                            jsonString.append("\"").append(getMethod.invoke(o)).append("\"");
+                            jsonString.append('\"').append(getMethod.invoke(o)).append('\"');
                             break;
                         case "LocalDate":
                             String localDateString;
@@ -72,13 +72,13 @@ public class Converter {
                             } else {
                                 localDateString = getMethod.invoke(o).toString();
                             }
-                            jsonString.append("\"").append(localDateString).append("\"");
+                            jsonString.append('\"').append(localDateString).append('\"');
                             break;
                         default:
                             jsonString.append(getMethod.invoke(o).toString());
                             break;
                     }
-                    jsonString.append(",");
+                    jsonString.append(',');
                 }
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
@@ -159,7 +159,7 @@ public class Converter {
 
     private static void runMethod(Human human, Method setMethod, String value, String fieldType, String dateFormat )  {
 
-        String shortFieldType = fieldType.substring(fieldType.lastIndexOf(".") + 1);
+        String shortFieldType = fieldType.substring(fieldType.lastIndexOf('.') + 1);
 
         try {
             switch (shortFieldType) {
@@ -171,7 +171,7 @@ public class Converter {
                     setMethod.invoke(human, LocalDate.parse(shortValue, DateTimeFormatter.ofPattern(dateFormat)));
                     break;
                 case "String":
-                    shortValue = value.substring( 1, value.lastIndexOf("\""));
+                    shortValue = value.substring( 1, value.lastIndexOf('\"'));
                     setMethod.invoke(human, shortValue);
                     break;
                 default:
