@@ -107,7 +107,9 @@ public class Converter {
             e.printStackTrace();
         }
 
-        String newJson = json.replace("{","").replace("}","");
+        String newJson = json.replace("{","")
+                .replace("}","")
+                .replace("\"","");
         if ( newJson.isEmpty() ) {
                 return human;
         }
@@ -115,7 +117,7 @@ public class Converter {
         Map< String, String > jsonMap = Arrays
                 .stream(newJson.split(","))
                 .map(s -> s.split(":"))
-                .collect(Collectors.toMap(s -> s[0].replace("\"",""),s -> s[1]));
+                .collect(Collectors.toMap(s -> s[0], s -> s[1]));
 
         Field[] fields = human.getClass().getDeclaredFields();
 
@@ -167,12 +169,10 @@ public class Converter {
                     setMethod.invoke(human, Integer.valueOf(value));
                     break;
                 case "LocalDate":
-                    String shortValue = value.replace("\"","");
-                    setMethod.invoke(human, LocalDate.parse(shortValue, DateTimeFormatter.ofPattern(dateFormat)));
+                    setMethod.invoke(human, LocalDate.parse(value, DateTimeFormatter.ofPattern(dateFormat)));
                     break;
                 case "String":
-                    shortValue = value.substring( 1, value.lastIndexOf('\"'));
-                    setMethod.invoke(human, shortValue);
+                    setMethod.invoke(human, value);
                     break;
                 default:
                     setMethod.invoke(human, value);
