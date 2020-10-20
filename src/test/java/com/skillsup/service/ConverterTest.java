@@ -90,11 +90,11 @@ public class ConverterTest {
         assertEquals(json, actualJson);
     }
 
-    @Ignore
     @Test
     public void shouldBeNullField_firstName() {
         //GIVEN
-        String json = "{\"lastName\":\"Lennon\",\"fun\":\"Guitar\",\"birthDate\":\"09-10-1940\",\"age\":40}";
+//        String json = "{\"lastName\":\"Lennon\",\"fun\":\"Guitar\",\"birthDate\":\"09-10-1940\",\"age\":40}";
+        String json = "{\"lastName\":\"Lennon\"}";
         //WHEN
         Human human = converter.fromJson(json, Human.class);
         //THEN
