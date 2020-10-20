@@ -42,6 +42,9 @@ public class Converter {
             }
 
             try {
+                if (getMethod == null) {
+                    throw new AssertionError();
+                }
                 if (getMethod.invoke(o) != IS_NULL || field.getType().isPrimitive()) {
 
                     List<String> annotationList = getAnnotationList(field);
@@ -80,7 +83,7 @@ public class Converter {
                     }
                     jsonString.append(',');
                 }
-            } catch (IllegalAccessException | InvocationTargetException e) {
+            } catch (NullPointerException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
         }
@@ -119,7 +122,10 @@ public class Converter {
                 .map(s -> s.split(":"))
                 .collect(Collectors.toMap(s -> s[0], s -> s[1]));
 
-        Field[] fields = human.getClass().getDeclaredFields();
+        Field[] fields = new Field[0];
+        if (human != null) {
+            fields = human.getClass().getDeclaredFields();
+        }
 
         for (Field field : fields) {
             String fieldName = field.getName();
