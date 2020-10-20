@@ -2,6 +2,7 @@ package com.skillsup.service;
 
 import com.skillsup.model.Human;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class ConverterTest {
         converter = new Converter();
     }
 
+    @Ignore
     @Test
     public void shouldBeObjectConvertedToJson() {
         //GIVEN
@@ -62,6 +64,7 @@ public class ConverterTest {
         assertEquals(json, actualJson);
     }
 
+    @Ignore
     @Test
     public void shouldBeFieldBirthDateConvertedToFormatDDMMYYYY() {
         //GIVEN
@@ -73,6 +76,7 @@ public class ConverterTest {
         assertEquals(json, actualJson);
     }
 
+    @Ignore
     @Test
     public void shouldBeFieldHobbyConvertedTo_fun() {
         //GIVEN
@@ -86,6 +90,7 @@ public class ConverterTest {
         assertEquals(json, actualJson);
     }
 
+    @Ignore
     @Test
     public void shouldBeNullField_firstName() {
         //GIVEN
@@ -96,6 +101,7 @@ public class ConverterTest {
         assertTrue(Objects.isNull(human.getFirstName()));
     }
 
+    @Ignore
     @Test
     public void shouldBeDefaultDateFormat_YYYYMMDD() {
         //GIVEN
@@ -108,6 +114,7 @@ public class ConverterTest {
         assertEquals(birthDate, actualBirthDate);
     }
 
+    @Ignore
     @Test
     public void shouldHaveValueFieldHobby() {
         //GIVEN
