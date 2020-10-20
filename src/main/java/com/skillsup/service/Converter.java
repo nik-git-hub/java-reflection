@@ -22,7 +22,7 @@ public class Converter {
 
     public String toJson(Object o) {
 
-        Class oClass = o.getClass();
+        Class<?> oClass = o.getClass();
         Field[] fields = oClass.getDeclaredFields();
 
         StringBuilder jsonString = new StringBuilder();
@@ -170,9 +170,6 @@ public class Converter {
                     break;
                 case "LocalDate":
                     setMethod.invoke(human, LocalDate.parse(value, DateTimeFormatter.ofPattern(dateFormat)));
-                    break;
-                case "String":
-                    setMethod.invoke(human, value);
                     break;
                 default:
                     setMethod.invoke(human, value);
