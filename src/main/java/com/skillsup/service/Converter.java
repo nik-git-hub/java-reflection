@@ -1,6 +1,9 @@
 package com.skillsup.service;
 
 import com.skillsup.model.Human;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -19,6 +22,7 @@ public class Converter {
     public static final String IS_NULL = null;
     public static final String PREFIX_GET_METHOD = "get";
     public static final String PREFIX_SET_METHOD = "set";
+    private static final Logger LOG = LoggerFactory.getLogger(Converter.class);
 
     public String toJson(Object o) {
 
@@ -126,6 +130,9 @@ public class Converter {
         if (human != null) {
             fields = human.getClass().getDeclaredFields();
         }
+
+        LOG.info("amount of fields: [{}]",
+                fields.length);
 
         for (Field field : fields) {
             String fieldName = field.getName();

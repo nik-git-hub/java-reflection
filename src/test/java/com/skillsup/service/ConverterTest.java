@@ -4,6 +4,8 @@ import com.skillsup.model.Human;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -13,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ConverterTest {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ConverterTest.class);
     private static Converter converter;
 
     @BeforeClass
@@ -116,6 +119,9 @@ public class ConverterTest {
 
     @Test
     public void shouldHaveValueFieldHobby() {
+
+        LOG.info("start: shouldHaveValueFieldHobby");
+
         //GIVEN
         String json = "{\"fun\":\"Guitar\"}";
         String hobby = "Guitar";
@@ -124,5 +130,7 @@ public class ConverterTest {
         //THEN
         String actualValue = human.getHobby();
         assertEquals(hobby, actualValue);
+        LOG.info("end: shouldHaveValueFieldHobby: [{}]", actualValue);
+
     }
 }
